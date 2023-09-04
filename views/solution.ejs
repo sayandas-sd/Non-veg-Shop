@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="/style/main.css" type="text/css">
+</head>
+<body>
+        <h1><a href="#">Non-Veg shop</a>🍔</h1>      
+
+        <form action="/recipe" method="POST" class="buttons">
+            <button type="submit" name="choice" value="chicken">🥩</button>
+            <button type="submit" name="choice" value="beef">🍗</button>
+            <button type="submit" name="choice" value="fish">🐟</button>
+        </form>
+        <div id="recipeContainer" class="hidden">
+            <% if(locals.recipe) {%>
+            <h2 id="recipeTitle">
+                <%=recipe.name%>
+            </h2>
+            <h3>Ingredients</h3>
+
+            <ul id="ingredientsList">
+                <li>
+                    <%= recipe.ingredients.protein.name%>,<%= recipe.ingredients.protein.preparation%>
+                </li>
+
+                <li>
+                    <%= recipe.ingredients.salsa.name  %>
+                </li>
+ 
+                <% recipe.ingredients.toppings.forEach(topping => { %>
+                    <li>
+                        <% topping.quantity %> of <%= topping.name  %>
+                    </li>
+                <% }) %>
+            </ul>
+
+            <%} else { %>
+                <h2>pick Your fabourite food 👆🏼</h2>
+            <%}%>
+        </div>
+</body>
+</html>
